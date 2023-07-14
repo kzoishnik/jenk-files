@@ -1,0 +1,42 @@
+pipeline {
+    agent { docker { image 'python:latest'}}
+    environment {
+        PROJECT_NAME = "Mars"
+        OWNER_NAME = "M. I. "
+    }
+    stages {
+        stage('1-Build') {
+            steps {
+                echo "Start if Stage Build"
+                echo "Building...."
+                echo "End of Stage Build"
+            }
+        }
+        stage('2-Test') {
+            steps {
+                echo "Start if stage Test"
+                echo "Testing...."
+                sh '''
+                    echo "Line1"
+                    echo "Line2"
+                '''
+             
+                echo "End of Stage Test"
+            }
+        }
+        stage('3-Deploy') {
+            steps {
+                echo "Start if stage Deploy"
+                echo "Deploying...."
+                echo "End of Stage Deploy"
+                echo "Hello ${OWNER_NAME}"
+                echo "This is ${PROJECT_NAME}"
+            }
+        }
+        stage("4-Celebrated") {
+            steps {
+                echo "Very good"
+            }
+        }
+    }
+}
